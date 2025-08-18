@@ -27,7 +27,6 @@
     },
     "nsis": {
       "oneClick": true,
-      "allowToChangeInstallationDirectory": true,
       "runAfterFinish": true
     }
   }
