@@ -1,0 +1,34 @@
+{
+  "name": "chatgpt-ctrlg",
+  "version": "1.0.0",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^37.3.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.example.chatgptctrlg",
+    "productName": "ChatGPT Ctrl+G",
+    "files": [
+      "main.js",
+      "package.json",
+      "icon.png"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "allowToChangeInstallationDirectory": true,
+      "runAfterFinish": true
+    }
+  }
+}
