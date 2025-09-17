@@ -1,10 +1,10 @@
-// main.js
 const { app, BrowserWindow, globalShortcut, Tray, Menu, nativeImage } = require('electron');
 const path = require('path');
 
 let win = null;
 let tray = null;
 
+// 自動起動を有効化
 function enableAutoLaunch() {
   try {
     app.setLoginItemSettings({
@@ -18,6 +18,7 @@ function enableAutoLaunch() {
   }
 }
 
+// トレイアイコンを取得
 function getTrayIcon() {
   const file = path.join(__dirname, 'icon.png');
   let icon = nativeImage.createFromPath(file);
@@ -29,6 +30,7 @@ function getTrayIcon() {
   return icon.isEmpty() ? nativeImage.createEmpty() : icon;
 }
 
+// メインウィンドウを作成
 function createWindow() {
   const startHidden = process.argv.includes('--hidden');
 
@@ -57,6 +59,7 @@ function createWindow() {
   win.on('closed', () => { win = null; });
 }
 
+// ウィンドウの表示/非表示を切り替え
 function toggleWindow() {
   if (!win) return;
   if (win.isVisible()) {
@@ -67,6 +70,7 @@ function toggleWindow() {
   }
 }
 
+// トレイメニューを作成
 function createTray() {
   tray = new Tray(getTrayIcon());
   tray.setToolTip('ChatGPT (Ctrl+Gで表示/非表示)');
@@ -118,7 +122,6 @@ if (!gotLock) {
 }
 
 app.on('window-all-closed', () => {});
-
 app.on('will-quit', () => {
   globalShortcut.unregisterAll();
 });
